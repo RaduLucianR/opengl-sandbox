@@ -4,6 +4,7 @@ import com.jogamp.opengl.GLAutoDrawable;
 import nl.tue.s2iv60.core.cg.Renderer;
 import objects.Axis;
 import objects.Cube;
+import objects.Terrain;
 import org.joml.Vector3f;
 import static sandbox.Sandbox.ComboBoxID.VIEWMODE;
 import shaders.ShaderPrograms;
@@ -37,6 +38,7 @@ public class SandboxRenderer extends Renderer {
     @Override
     public void initObjects() {
         objects.add(new Cube());
+        objects.add(new Terrain());
         Vector3f pos = new Vector3f();
         pos.x = 0;
         pos.y = 0;
