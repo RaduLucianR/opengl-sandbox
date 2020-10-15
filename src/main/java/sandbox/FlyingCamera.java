@@ -27,11 +27,32 @@ class FlyingCamera extends Camera {
         Vector3f vDistance = eye.sub(center);
         GS.vDist = vDistance.length();
 
-        float cosTheta = (float) Math.cos(eye.x/eye.length());
-        GS.theta = (float)Math.acos(cosTheta);
+        Vector3f x = new Vector3f(1,0,0);
+        Vector3f y = new Vector3f(0,1,0);
+        Vector3f z = new Vector3f(0,0,1);
 
-        float cosPhi = (float) Math.cos(eye.z/eye.length());
-        GS.phi = (float) -(Math.acos(cosPhi)-1.57);
+        Vector3f normalXY = new Vector3f(0);
+        Vector3f normalXZ = new Vector3f(0);
+
+        x.cross(y,normalXY);
+        x.cross(z,normalXZ);
+
+        float dotXY = eye.dot(normalXY);
+        float dotXZ = eye.dot(normalXZ);
+
+        normalXY.mul(dotXY);
+        normalXZ.mul(dotXZ);
+
+        Vector3f projXY = new Vector3f(0);
+        Vector3f projXZ= new Vector3f(0);
+
+        eye.sub(normalXY,projXY);
+        eye.sub(normalXZ,projXZ);
+
+        GS.theta = x.angle(projXY);
+        GS.phi = x.angle(projXZ);
+
+
         //  compute theta, phi, and vDist to start with same eye point and direction
     }
 
@@ -39,6 +60,7 @@ class FlyingCamera extends Camera {
     public void apply(GL2 gl, GLU glu) {
         // Compute eye vector based on center and GS.theta, GS.phi, and GS.vDist.
         // Keep up-vector the same.
+
         Vector3f z = new Vector3f(0,0,1);
         Vector3f y = new Vector3f(0,1,0);
         Vector3f eyePosition = new Vector3f(1,0,0);
