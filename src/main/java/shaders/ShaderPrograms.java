@@ -31,11 +31,11 @@ import nl.tue.s2iv60.core.util.ShaderProgram;
  */
 public class ShaderPrograms {
      /* To globally use every shader anywhere, add them like a static variable as done with defaultShader */
-    private static ShaderProgram defaultShader;
+    private static ShaderProgram phongShader;
 
     public static void setupShaders(GL2 gl, GLU glu) {
-        defaultShader = createShaderProgram(gl, glu, "default",
-            "default_shader", "default_vertex.glsl", null, "default_fragment.glsl"
+        phongShader = createShaderProgram(gl, glu, "phong",
+            "phongShader", "phongShader_vert.glsl", null, "phongShader_frag.glsl"
         );
     }
     
@@ -64,7 +64,7 @@ public class ShaderPrograms {
     
     /** start using the default shader. Here you can also set your uniforms. */
     public static ShaderProgram useDefaultShader(GL2 gl) {
-        defaultShader.useProgram(gl);
-        return defaultShader;
+        phongShader.useProgram(gl);
+        return phongShader;
     }
 }
