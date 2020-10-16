@@ -51,13 +51,13 @@ public class Sandbox extends Base {
      * * Pickup boolean value of checkbox by e.g. <code>SHOWAXIS.getValue();</code>.
      **/
     public enum CheckBoxID {
-        SHOWAXIS("Show axis", true),
-        SHOWTERRAIN("Show terrain",true),
-        SHOWCAROUSEL("Show carousel",true),
-        SHOWPATH("Show path", true),
+        SHOWAXIS("Show axis", false),
+        SHOWTERRAIN("Show terrain",false),
+        SHOWCAROUSEL("Show carousel",false),
+        SHOWPATH("Show path", false),
         SHOWCONTROLPOLYGONS("show control polygons",false),
-        SHOWSTALL("Show stall",true),
-        SHOWLIGHTPOLES("Show light poles",true),
+        SHOWSTALL("Show stall",false),
+        SHOWLIGHTPOLES("Show light poles",false),
         LIGHTPOLESON("lightpoles on",false),
         HEADLIGHTON("head light on", true);
 
