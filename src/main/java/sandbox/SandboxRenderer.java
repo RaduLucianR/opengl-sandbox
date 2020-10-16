@@ -3,10 +3,7 @@ package sandbox;
 import com.jogamp.opengl.GL;
 import com.jogamp.opengl.GLAutoDrawable;
 import nl.tue.s2iv60.core.cg.Renderer;
-import objects.Axis;
-import objects.Cube;
-import objects.Road;
-import objects.Terrain;
+import objects.*;
 import org.joml.Vector3f;
 import static sandbox.Sandbox.ComboBoxID.VIEWMODE;
 import shaders.ShaderPrograms;
@@ -42,6 +39,7 @@ public class SandboxRenderer extends Renderer {
         gl.glDisable(GL.GL_CULL_FACE);
         objects.add(new Cube());
         objects.add(new Terrain());
+
         Vector3f pos = new Vector3f();
         pos.x = 0;
         pos.y = 0;
@@ -49,6 +47,8 @@ public class SandboxRenderer extends Renderer {
         float size = 4;
         objects.add(new Axis(pos,size));
         objects.add(new Road(pos));
+        size = 1;
+        objects.add(new Carousel(pos,size));
     }
     
     /**
