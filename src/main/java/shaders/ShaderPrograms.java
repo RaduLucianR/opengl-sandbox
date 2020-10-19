@@ -8,6 +8,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import static nl.tue.s2iv60.core.app.GS.FS;
 import static nl.tue.s2iv60.core.app.GS.SHADER_DIR;
+import static sandbox.Sandbox.ComboBoxID.DAYNIGHT;
+import static sandbox.Sandbox.CheckBoxID.HEADLIGHTON;
 import nl.tue.s2iv60.core.util.ShaderProgram;
 
 
@@ -33,6 +35,7 @@ public class ShaderPrograms {
      /* To globally use every shader anywhere, add them like a static variable as done with defaultShader */
     private static ShaderProgram defaultShader;
     private static ShaderProgram phongShader;
+    private static ShaderProgram terrainShader;
 
     public static void setupShaders(GL2 gl, GLU glu) {
         defaultShader = createShaderProgram(gl, glu, "default",
@@ -41,6 +44,10 @@ public class ShaderPrograms {
 
         phongShader = createShaderProgram(gl, glu, "phong",
             "phongShader", "phongShader_vert.glsl", null, "phongShader_frag.glsl"
+        );
+
+        terrainShader = createShaderProgram(gl, glu, "terrain",
+                "terrainShader", "terrainShader_vert.glsl", null, "terrainShader_frag.glsl"
         );
     }
     
@@ -74,7 +81,16 @@ public class ShaderPrograms {
     }
 
     public static ShaderProgram usePhongShader(GL2 gl) {
-        phongShader.useProgram(gl);
+        ShaderProgram s=phongShader;
+        s.useProgram(gl);
+        s.setUniform(gl,"isDay",DAYNIGHT.getValue()==0);
+        return phongShader;
+    }
+
+    public static ShaderProgram useTerrainShader(GL2 gl) {
+        ShaderProgram t=terrainShader;
+        t.useProgram(gl);
+        t.setUniform(gl,"isDay",DAYNIGHT.getValue()==0);
         return phongShader;
     }
 }
