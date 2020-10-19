@@ -40,7 +40,7 @@ public class SandboxRenderer extends Renderer {
     public void initObjects() {
         gl.glDisable(GL.GL_CULL_FACE);
         //objects.add(new Cube());
-        objects.add(new Terrain());
+
 
         Vector3f pos = new Vector3f();
         pos.x = 0;
@@ -48,13 +48,17 @@ public class SandboxRenderer extends Renderer {
         pos.z = 0;
         float size = 4;
         objects.add(new Axis(pos,size));
-        objects.add(new Road(pos));
-        size = 1;
-        objects.add(new Carousel(pos,size));
+        objects.add(new Terrain());
         objects.add(new Stall(pos));
         objects.add(new LightPole(pos,0,0));
         objects.add(new Trees(pos));
         objects.add(new Train(pos));
+
+        objects.add(new Road(pos));
+        size = 1;
+        objects.add(new Carousel(pos,size));
+
+
     }
     
     /**

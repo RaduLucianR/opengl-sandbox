@@ -1,5 +1,6 @@
 package objects;
 
+import com.jogamp.opengl.GL;
 import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.util.gl2.GLUT;
 import nl.tue.s2iv60.core.cg.Renderable;
@@ -78,16 +79,24 @@ public class Carousel implements Renderable {
 
     @Override
     public void render(GL2 gl, GLUT glut, double tAnim, double dt) {
-        gl.glColorMaterial ( gl.GL_FRONT_AND_BACK, gl.GL_EMISSION);
-        gl.glColorMaterial ( gl.GL_FRONT_AND_BACK, gl.GL_EMISSION);
-        gl.glColorMaterial ( gl.GL_FRONT_AND_BACK, gl.GL_AMBIENT_AND_DIFFUSE ) ;
-        gl.glEnable ( gl.GL_COLOR_MATERIAL ) ;
+        //gl.glColorMaterial ( gl.GL_FRONT_AND_BACK, gl.GL_EMISSION);
+        //gl.glColorMaterial ( gl.GL_FRONT_AND_BACK, gl.GL_EMISSION);
+       // gl.glColorMaterial ( gl.GL_FRONT_AND_BACK, gl.GL_AMBIENT_AND_DIFFUSE ) ;
+       // gl.glEnable ( gl.GL_COLOR_MATERIAL ) ;
         //ambient, Vector3f diffuse, Vector3f specular, float shininess
-        Material carouselMaterial = new Material(new Vector3f(0,0,0),new Vector3f(1,1,1),new Vector3f(1,1,1),1.0f);
-        carouselMaterial.use(gl);
+        //Material carouselMaterial = new Material(new Vector3f(0,0,0),new Vector3f(1,1,1),new Vector3f(1,1,1),1.0f);
+        //carouselMaterial.use(gl);
         //gl.glDisable(gl.GL_CULL_FACE);
-        ShaderPrograms.useTerrainShader(gl);
+        //ShaderPrograms.useTerrainShader(gl);
         if (SHOWCAROUSEL.getValue()) {
+            gl.glEnable ( gl.GL_COLOR_MATERIAL ) ;
+            gl.glDisable(GL.GL_CULL_FACE);
+            gl.glEnable(gl.GL_DEPTH_TEST);
+            gl.glDepthFunc(GL.GL_LEQUAL);
+            Material carrouselMaterial = new Material(new Vector3f(0.5f,0.5f,0.5f),new Vector3f(0.0f,0.0f,0.0f),new Vector3f(0.25f,0.25f,0.25f),80f);
+            carrouselMaterial.use(gl);
+            ShaderPrograms.useCarrouselShader(gl);
+
             gl.glPushMatrix();
             gl.glScalef(size,size,size);
             gl.glTranslatef(position.x,position.y,position.z);

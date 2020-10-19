@@ -1,5 +1,6 @@
 package objects;
 
+import com.jogamp.opengl.GL;
 import nl.tue.s2iv60.core.util.Material;
 import nl.tue.s2iv60.core.cg.Renderable;
 import com.jogamp.opengl.GL2;
@@ -18,17 +19,12 @@ public class Stall implements Renderable {
 
     @Override
     public void render(GL2 gl, GLUT glut, double tAnim, double dt) {
-        gl.glDisable(gl.GL_LIGHT0);
-        gl.glColorMaterial ( gl.GL_FRONT_AND_BACK, gl.GL_EMISSION);
-        gl.glColorMaterial ( gl.GL_FRONT_AND_BACK, gl.GL_EMISSION);
-        gl.glColorMaterial ( gl.GL_FRONT_AND_BACK, gl.GL_AMBIENT_AND_DIFFUSE ) ;
-        gl.glEnable ( gl.GL_COLOR_MATERIAL ) ;
-        //ambient, Vector3f diffuse, Vector3f specular, float shininess
-        Material stallMaterial = new Material(new Vector3f(0,0,0),new Vector3f(1,1,1),new Vector3f(1,1,1),1.0f);
-        stallMaterial.use(gl);
-        //gl.glDisable(gl.GL_CULL_FACE);
-        ShaderPrograms.useTerrainShader(gl);
         if (SHOWSTALL.getValue()) {
+            gl.glEnable ( gl.GL_COLOR_MATERIAL ) ;
+            gl.glEnable(GL.GL_CULL_FACE);
+            Material stallMaterial = new Material(new Vector3f(0.5f,0.5f,0.5f),new Vector3f(0.0f,0.0f,0.0f),new Vector3f(0.25f,0.25f,0.25f),80f);
+            stallMaterial.use(gl);
+            ShaderPrograms.usePhongShader(gl);
             //gl.glTranslatef(position.x,position.y,position.z);
             //gl.glScalef(10,10,10);
 
@@ -73,8 +69,6 @@ public class Stall implements Renderable {
             gl.glColor3f(0.5f,0.5f,0.0f);
             gl.glScalef(2.7f,1.7f,0.3f);
             glut.glutSolidCube(1f);
-            gl.glPopMatrix();
-
             gl.glPopMatrix();
         }
     }

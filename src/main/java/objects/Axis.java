@@ -5,6 +5,7 @@ import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.util.gl2.GLUT;
 import com.jogamp.opengl.glu.GLU;
 import nl.tue.s2iv60.core.cg.Renderable;
+import nl.tue.s2iv60.core.util.Material;
 import org.joml.Matrix3d;
 import org.joml.Vector3f;
 import shaders.ShaderPrograms;
@@ -64,11 +65,8 @@ public class Axis implements Renderable {
 
     @Override
     public void render(GL2 gl, GLUT glut, double tAnim, double dt) {
-        ShaderPrograms.useDefaultShader(gl);
         if (SHOWAXIS.getValue()) {
-            gl.glDisable(gl.GL_CULL_FACE);
-
-            gl.glDisable(GL.GL_CULL_FACE);
+            ShaderPrograms.useDefaultShader(gl);
 
             gl.glPushMatrix();
             gl.glColor3f(1,1,0);

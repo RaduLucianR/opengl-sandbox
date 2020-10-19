@@ -23,20 +23,16 @@ public class Terrain implements Renderable {
     private float rtri =0.0f;
     @Override
     public void render(GL2 gl, GLUT glut, double tAnim, double dt) {
-        gl.glColorMaterial ( gl.GL_FRONT_AND_BACK, gl.GL_EMISSION);
-        gl.glColorMaterial ( gl.GL_FRONT_AND_BACK, gl.GL_AMBIENT_AND_DIFFUSE ) ;
-        gl.glEnable ( gl.GL_COLOR_MATERIAL ) ;
-        Material terrainMaterial = new Material(new Vector3f(0.2f,0.2f,0.2f),new Vector3f(0.8f,0.8f,0.8f),new Vector3f(0,0,0),32f);
-        terrainMaterial.use(gl);
-        ShaderPrograms.useTerrainShader(gl);
-        //ShaderPrograms.usePhongShader(gl);
-        gl.glDisable(gl.GL_CULL_FACE);
         if (SHOWTERRAIN.getValue()) {
-            gl.glClearDepth(1.0f);
-            gl.glEnable(gl.GL_DEPTH_TEST); // Enable Depth Test to make shape solid
-            gl.glDepthFunc(gl.GL_LEQUAL);
-            gl.glHint(gl.GL_PERSPECTIVE_CORRECTION_HINT, gl.GL_NICEST);  // Clear The Screen And The Depth Buffer
-            gl.glClear(gl.GL_COLOR_BUFFER_BIT | gl.GL_DEPTH_BUFFER_BIT);
+            gl.glEnable ( gl.GL_COLOR_MATERIAL ) ;
+            Material terrainMaterial = new Material(new Vector3f(0.2f,0.2f,0.2f),new Vector3f(0.8f,0.8f,0.8f),new Vector3f(0,0,0),32f);
+            terrainMaterial.use(gl);
+            ShaderPrograms.useTerrainShader(gl);
+            //gl.glClearDepth(1.0f);
+            //gl.glEnable(gl.GL_DEPTH_TEST); // Enable Depth Test to make shape solid
+            //gl.glDepthFunc(gl.GL_LEQUAL);
+            //gl.glHint(gl.GL_PERSPECTIVE_CORRECTION_HINT, gl.GL_NICEST);  // Clear The Screen And The Depth Buffer
+            //gl.glClear(gl.GL_COLOR_BUFFER_BIT | gl.GL_DEPTH_BUFFER_BIT);
 
             gl.glPushMatrix();
             /**

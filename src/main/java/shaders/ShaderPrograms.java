@@ -36,6 +36,7 @@ public class ShaderPrograms {
     private static ShaderProgram defaultShader;
     private static ShaderProgram phongShader;
     private static ShaderProgram terrainShader;
+    private static ShaderProgram roadShader;
 
     public static void setupShaders(GL2 gl, GLU glu) {
         defaultShader = createShaderProgram(gl, glu, "default",
@@ -48,6 +49,10 @@ public class ShaderPrograms {
 
         terrainShader = createShaderProgram(gl, glu, "terrain",
                 "terrainShader", "terrainShader_vert.glsl", null, "terrainShader_frag.glsl"
+        );
+
+        roadShader = createShaderProgram(gl,glu,"road",
+                "roadShader","roadShader_vert.glsl",null,"roadShader_frag.glsl"
         );
     }
     
@@ -91,6 +96,20 @@ public class ShaderPrograms {
         ShaderProgram t=terrainShader;
         t.useProgram(gl);
         t.setUniform(gl,"isDay",DAYNIGHT.getValue()==0);
-        return phongShader;
+        return terrainShader;
+    }
+
+    public static ShaderProgram useRoadShader(GL2 gl) {
+        ShaderProgram t=roadShader;
+        t.useProgram(gl);
+        t.setUniform(gl,"isDay",DAYNIGHT.getValue()==0);
+        return roadShader;
+    }
+
+    public static ShaderProgram useCarrouselShader(GL2 gl) {
+        ShaderProgram t=terrainShader;
+        t.useProgram(gl);
+        t.setUniform(gl,"isDay",DAYNIGHT.getValue()==0);
+        return terrainShader;
     }
 }

@@ -1,5 +1,6 @@
 package objects.lights;
 
+import com.jogamp.opengl.GL;
 import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.util.gl2.GLUT;
 import static java.lang.Math.atan2;
@@ -70,6 +71,12 @@ public class LightPole implements Renderable {
     @Override
     public void render(GL2 gl, GLUT glut, double tAnim, double dt) {
         if (SHOWLIGHTPOLES.getValue()) {
+            gl.glEnable ( gl.GL_COLOR_MATERIAL ) ;
+            gl.glEnable(GL.GL_CULL_FACE);
+            Material lightPoleMaterial = new Material(new Vector3f(0.5f,0.5f,0.5f),new Vector3f(0.0f,0.0f,0.0f),new Vector3f(0.25f,0.25f,0.25f),80f);
+            lightPoleMaterial.use(gl);
+            ShaderPrograms.usePhongShader(gl);
+
             drawLightPole(gl,glut);
         }
     }

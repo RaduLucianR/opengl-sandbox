@@ -27,22 +27,13 @@ public class Road implements Renderable {
 
     public Road(Vector3f position) {
         this.position = position;
-        texture = new TextureImg("road.jpg");
+        texture = new TextureImg("textureRoad.jpg");
     }
 
     @Override
     public void render(GL2 gl, GLUT glut, double tAnim, double dt) {
-        //texture.bind(gl);
-        //gl.glEnable(gl.GL_TEXTURE_2D);
-        gl.glColorMaterial ( gl.GL_FRONT_AND_BACK, gl.GL_EMISSION);
-        gl.glColorMaterial ( gl.GL_FRONT_AND_BACK, gl.GL_EMISSION);
-        gl.glColorMaterial ( gl.GL_FRONT_AND_BACK, gl.GL_AMBIENT_AND_DIFFUSE ) ;
-        gl.glEnable ( gl.GL_COLOR_MATERIAL ) ;
-        //ambient, Vector3f diffuse, Vector3f specular, float shininess
-        Material roadMaterial = new Material(new Vector3f(0,0,0),new Vector3f(1,1,1),new Vector3f(1,1,1),1.0f);
-        roadMaterial.use(gl);
-        //gl.glDisable(gl.GL_CULL_FACE);
-        ShaderPrograms.useTerrainShader(gl);
+        texture.bind(gl);
+        gl.glEnable(gl.GL_TEXTURE_2D);
         /** Define the control points and the number of Bezier curves of the path*/
         Vector3f[] curve1 = {
                 new Vector3f(-5,-15,0.0001f),
@@ -66,6 +57,13 @@ public class Road implements Renderable {
         };
 
         if (SHOWPATH.getValue()) {
+            gl.glEnable ( gl.GL_COLOR_MATERIAL ) ;
+            gl.glEnable(GL.GL_CULL_FACE);
+            gl.glEnable(gl.GL_DEPTH_TEST);
+            gl.glDepthFunc(GL.GL_LEQUAL);
+            Material roadMaterial = new Material(new Vector3f(0.5f,0.5f,0.5f),new Vector3f(0.0f,0.0f,0.0f),new Vector3f(0.25f,0.25f,0.25f),80f);
+            roadMaterial.use(gl);
+            ShaderPrograms.useRoadShader(gl);
             gl.glColor3f(0.5f,0.3f,0.1f);
             drawBezierCurve(gl,curve1,curve3);
             drawBezierCurve(gl,curve2,curve1);

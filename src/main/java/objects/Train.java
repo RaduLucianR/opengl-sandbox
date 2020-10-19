@@ -1,5 +1,6 @@
 package objects;
 
+import com.jogamp.opengl.GL;
 import nl.tue.s2iv60.core.util.Material;
 import nl.tue.s2iv60.core.cg.Renderable;
 import com.jogamp.opengl.GL2;
@@ -19,6 +20,14 @@ public class Train implements Renderable {
     @Override
     public void render(GL2 gl, GLUT glut, double tAnim, double dt) {
         if (SHOWTRAIN.getValue()) {
+            gl.glEnable ( gl.GL_COLOR_MATERIAL ) ;
+            gl.glDisable(GL.GL_CULL_FACE);
+            gl.glEnable(gl.GL_DEPTH_TEST);
+            gl.glDepthFunc(GL.GL_LEQUAL);
+            Material trainMaterial = new Material(new Vector3f(0.5f,0.5f,0.5f),new Vector3f(0.0f,0.0f,0.0f),new Vector3f(0.25f,0.25f,0.25f),80f);
+            trainMaterial.use(gl);
+            ShaderPrograms.usePhongShader(gl);
+
             gl.glPushMatrix();
             gl.glTranslatef(10,-10,0);
             gl.glScalef(0.75f,0.75f,0.75f);
