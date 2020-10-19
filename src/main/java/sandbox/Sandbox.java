@@ -59,7 +59,9 @@ public class Sandbox extends Base {
         SHOWSTALL("Show stall",false),
         SHOWLIGHTPOLES("Show light poles",false),
         LIGHTPOLESON("lightpoles on",false),
-        HEADLIGHTON("head light on", true);
+        HEADLIGHTON("head light on", true),
+        SHOWTREES("Show Trees",false),
+        SHOWTRAIN("Show Train on road",false);
 
         private JCheckBox cb;
         CheckBoxID(String label, boolean initialValue) { 

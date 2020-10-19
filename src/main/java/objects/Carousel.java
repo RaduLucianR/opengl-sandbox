@@ -3,6 +3,7 @@ package objects;
 import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.util.gl2.GLUT;
 import nl.tue.s2iv60.core.cg.Renderable;
+import nl.tue.s2iv60.core.util.Material;
 import org.joml.Vector3f;
 import shaders.ShaderPrograms;
 
@@ -77,8 +78,15 @@ public class Carousel implements Renderable {
 
     @Override
     public void render(GL2 gl, GLUT glut, double tAnim, double dt) {
-        ShaderPrograms.useDefaultShader(gl);
-        gl.glDisable(gl.GL_CULL_FACE);
+        gl.glColorMaterial ( gl.GL_FRONT_AND_BACK, gl.GL_EMISSION);
+        gl.glColorMaterial ( gl.GL_FRONT_AND_BACK, gl.GL_EMISSION);
+        gl.glColorMaterial ( gl.GL_FRONT_AND_BACK, gl.GL_AMBIENT_AND_DIFFUSE ) ;
+        gl.glEnable ( gl.GL_COLOR_MATERIAL ) ;
+        //ambient, Vector3f diffuse, Vector3f specular, float shininess
+        Material carouselMaterial = new Material(new Vector3f(0,0,0),new Vector3f(1,1,1),new Vector3f(1,1,1),1.0f);
+        carouselMaterial.use(gl);
+        //gl.glDisable(gl.GL_CULL_FACE);
+        ShaderPrograms.useTerrainShader(gl);
         if (SHOWCAROUSEL.getValue()) {
             gl.glPushMatrix();
             gl.glScalef(size,size,size);

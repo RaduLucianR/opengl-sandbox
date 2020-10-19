@@ -15,7 +15,6 @@ public class StreetLights implements Renderable {
 
     public StreetLights(Road road) {
         this.road = road;
-        
     }
 
     @Override
@@ -28,9 +27,8 @@ public class StreetLights implements Renderable {
         for (int i = 0; i < numLights; i++) {
             if (poles[i]==null) {
                 // position street lights regularly
-                Vector3f pos = new Vector3f(0);
-                Vector3f tng = new Vector3f(0);
-
+                Vector3f pos = new Vector3f(3,3,0);
+                Vector3f tng = new Vector3f(1,1,0);
                 poles[i] = new LightPole(pos, tng, 1, gl.GL_LIGHT0+(i+1));
             }
         

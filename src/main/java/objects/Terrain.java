@@ -23,8 +23,13 @@ public class Terrain implements Renderable {
     private float rtri =0.0f;
     @Override
     public void render(GL2 gl, GLUT glut, double tAnim, double dt) {
+        gl.glColorMaterial ( gl.GL_FRONT_AND_BACK, gl.GL_EMISSION);
+        gl.glColorMaterial ( gl.GL_FRONT_AND_BACK, gl.GL_AMBIENT_AND_DIFFUSE ) ;
+        gl.glEnable ( gl.GL_COLOR_MATERIAL ) ;
+        Material terrainMaterial = new Material(new Vector3f(0.2f,0.2f,0.2f),new Vector3f(0.8f,0.8f,0.8f),new Vector3f(0,0,0),32f);
+        terrainMaterial.use(gl);
+        ShaderPrograms.useTerrainShader(gl);
         //ShaderPrograms.usePhongShader(gl);
-        ShaderPrograms.useDefaultShader(gl);
         gl.glDisable(gl.GL_CULL_FACE);
         if (SHOWTERRAIN.getValue()) {
             gl.glClearDepth(1.0f);

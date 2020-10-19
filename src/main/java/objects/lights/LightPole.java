@@ -27,9 +27,50 @@ public class LightPole implements Renderable {
         this(pos, new Vector3f(1,0,0), sf, LIGHT);
     }
 
+    public void drawLightPole(GL2 gl, GLUT glut){
+        gl.glPushMatrix();
+        gl.glTranslatef(8,8,0);
+
+        gl.glPushMatrix();
+        gl.glColor3f(0,0,0);
+        gl.glTranslatef(0,0,0.1f);
+        gl.glScalef(5f,5f,1f);
+        glut.glutSolidCube(0.2f);
+        gl.glPopMatrix();
+
+        gl.glPushMatrix();
+        gl.glColor3f(0,0,0);
+        gl.glTranslatef(0,0,2.25f);
+        gl.glScalef(0.1f,0.1f,1.5f);
+        glut.glutSolidCube(3);
+        gl.glPopMatrix();
+
+        gl.glPushMatrix();
+        gl.glColor3f(0,0,0);
+        gl.glTranslatef(-0.975f,0,4.65f);
+        gl.glScalef(0.75f,0.1f,0.1f);
+        glut.glutSolidCube(3);
+        gl.glPopMatrix();
+
+        gl.glPushMatrix();
+        gl.glColor3f(0,0,0);
+        gl.glTranslatef(-1.2f,0,4.50f);
+        glut.glutSolidCube(0.3f);
+        gl.glPopMatrix();
+
+        gl.glPushMatrix();
+        gl.glColor3f(0,0,0);
+        gl.glTranslatef(-1.2f,0,3.85f);
+        glut.glutSolidCube(1f);
+        gl.glPopMatrix();
+
+        gl.glPopMatrix();
+    }
+
     @Override
     public void render(GL2 gl, GLUT glut, double tAnim, double dt) {
         if (SHOWLIGHTPOLES.getValue()) {
+            drawLightPole(gl,glut);
         }
     }
 }
