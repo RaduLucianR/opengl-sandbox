@@ -7,6 +7,7 @@ import nl.tue.s2iv60.core.cg.Renderable;
 import nl.tue.s2iv60.core.util.Material;
 import org.joml.Vector3f;
 import shaders.ShaderPrograms;
+import static sandbox.Sandbox.SliderID.CAROUSEL_SPEED;
 
 import static sandbox.Sandbox.CheckBoxID.SHOWCAROUSEL;
 import static sandbox.Sandbox.CheckBoxID.SHOWTERRAIN;
@@ -16,7 +17,8 @@ public class Carousel implements Renderable {
 
     private final Vector3f position;
 
-    private float rtri;  //for angle of rotation
+    private float rotation;  //for angle of rotation
+    private float value;
     private float height;
     private boolean state;
 
@@ -79,15 +81,6 @@ public class Carousel implements Renderable {
 
     @Override
     public void render(GL2 gl, GLUT glut, double tAnim, double dt) {
-        //gl.glColorMaterial ( gl.GL_FRONT_AND_BACK, gl.GL_EMISSION);
-        //gl.glColorMaterial ( gl.GL_FRONT_AND_BACK, gl.GL_EMISSION);
-       // gl.glColorMaterial ( gl.GL_FRONT_AND_BACK, gl.GL_AMBIENT_AND_DIFFUSE ) ;
-       // gl.glEnable ( gl.GL_COLOR_MATERIAL ) ;
-        //ambient, Vector3f diffuse, Vector3f specular, float shininess
-        //Material carouselMaterial = new Material(new Vector3f(0,0,0),new Vector3f(1,1,1),new Vector3f(1,1,1),1.0f);
-        //carouselMaterial.use(gl);
-        //gl.glDisable(gl.GL_CULL_FACE);
-        //ShaderPrograms.useTerrainShader(gl);
         if (SHOWCAROUSEL.getValue()) {
             gl.glEnable ( gl.GL_COLOR_MATERIAL ) ;
             gl.glDisable(GL.GL_CULL_FACE);
@@ -100,14 +93,14 @@ public class Carousel implements Renderable {
             gl.glPushMatrix();
             gl.glScalef(size,size,size);
             gl.glTranslatef(position.x,position.y,position.z);
-            gl.glRotatef( rtri, 0.0f, 0.0f, 1.0f );
+            gl.glRotatef( rotation, 0.0f, 0.0f, 1.0f );
             gl.glPushMatrix();
             gl.glColor4f(0.8f, 0.0f, 0.8f,0.0f);
             gl.glTranslatef(0,0,0.0f);
-            glut.glutSolidCylinder(5,0.30f,20,20);
+            glut.glutSolidCylinder(5,0.30f,50,50);
 
             gl.glColor4f(1.0f, 0.0f, 1.0f,0.0f);
-            glut.glutSolidCylinder(5.5,0.10f,20,20);
+            glut.glutSolidCylinder(5.5,0.10f,50,50);
             gl.glColor4f(0.7f, 0.4f, 0.0f,0.0f);
             glut.glutSolidCylinder(0.5f,3.0f,20,20);
             gl.glPopMatrix();
@@ -258,7 +251,9 @@ public class Carousel implements Renderable {
 
             }
           gl.glPopMatrix();
-            rtri += 0.2f;  //assigning the angle
+            value = CAROUSEL_SPEED.getValue();
+            value = (float) (value / 100.0);
+            rotation += value;  //assigning the angle
 
         }
     }

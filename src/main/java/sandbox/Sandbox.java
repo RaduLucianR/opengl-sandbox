@@ -16,7 +16,7 @@ public class Sandbox extends Base {
      * Pickup int value of the slider in [0,100] by e.g. <code>SLIDER1.getValue();</code>.
      **/
     public enum SliderID {    
-        SLIDER1("A",50), SLIDER2("B",50);
+        SLIDER1("A",50), SLIDER2("B",50), CAROUSEL_SPEED("SPEED",20);
         private JSlider slider;
         SliderID(String label,int value) {
             slider = new JSlider(0,100, value);

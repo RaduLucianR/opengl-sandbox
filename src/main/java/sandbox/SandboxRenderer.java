@@ -51,12 +51,39 @@ public class SandboxRenderer extends Renderer {
         objects.add(new Terrain());
         objects.add(new Stall(pos));
         objects.add(new LightPole(pos,0,0));
-        objects.add(new Trees(pos));
         objects.add(new Train(pos));
 
         objects.add(new Road(pos));
         size = 1;
         objects.add(new Carousel(pos,size));
+
+
+        Vector3f tree1 = new Vector3f();
+        tree1.x = -10;
+        tree1.y = -10;
+        tree1.z = 0;
+        objects.add(new Trees(tree1));
+        Vector3f tree2 = new Vector3f();
+        tree2.x = 15;
+        tree2.y = 15;
+        tree2.z = 0;
+        objects.add(new Trees(tree2));
+        Vector3f tree3 = new Vector3f();
+        tree3.x = -7.5f;
+        tree3.y = 7.5f;
+        tree3.z = 0;
+        objects.add(new Trees(tree3));
+        Vector3f tree4 = new Vector3f();
+        tree4.x = -12;
+        tree4.y = 19.5f;
+        tree4.z = 0;
+        objects.add(new Trees(tree4));
+        Vector3f tree5 = new Vector3f();
+        tree5.x = 18;
+        tree5.y = -13;
+        tree5.z = 0;
+        objects.add(new Trees(tree5));
+
 
 
     }

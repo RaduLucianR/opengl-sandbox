@@ -29,7 +29,7 @@ public class Trees implements Renderable {
             ShaderPrograms.usePhongShader(gl);
 
             gl.glPushMatrix();
-            gl.glTranslatef(-10,-10,0);
+            gl.glTranslatef(position.x,position.y,position.z);
 
             gl.glPushMatrix();
             gl.glColor3f(0.3f,0,0);
