@@ -24,7 +24,7 @@ public class Train implements Renderable {
             gl.glDisable(GL.GL_CULL_FACE);
             gl.glEnable(gl.GL_DEPTH_TEST);
             gl.glDepthFunc(GL.GL_LEQUAL);
-            Material trainMaterial = new Material(new Vector3f(0.5f,0.5f,0.5f),new Vector3f(0.0f,0.0f,0.0f),new Vector3f(0.25f,0.25f,0.25f),80f);
+            Material trainMaterial = new Material(new Vector3f(0.5f,0.5f,0.5f),new Vector3f(0.8f,0.8f,0.8f),new Vector3f(0.25f,0.25f,0.25f),80f);
             trainMaterial.use(gl);
             ShaderPrograms.usePhongShader(gl);
 

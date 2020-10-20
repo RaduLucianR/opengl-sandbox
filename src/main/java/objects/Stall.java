@@ -22,7 +22,7 @@ public class Stall implements Renderable {
         if (SHOWSTALL.getValue()) {
             gl.glEnable ( gl.GL_COLOR_MATERIAL ) ;
             gl.glEnable(GL.GL_CULL_FACE);
-            Material stallMaterial = new Material(new Vector3f(0.5f,0.5f,0.5f),new Vector3f(0.0f,0.0f,0.0f),new Vector3f(0.25f,0.25f,0.25f),80f);
+            Material stallMaterial = new Material(new Vector3f(0.5f,0.5f,0.5f),new Vector3f(0.8f,0.8f,0.8f),new Vector3f(0.25f,0.25f,0.25f),80f);
             stallMaterial.use(gl);
             ShaderPrograms.usePhongShader(gl);
             //gl.glTranslatef(position.x,position.y,position.z);

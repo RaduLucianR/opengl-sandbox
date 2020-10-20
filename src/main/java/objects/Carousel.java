@@ -86,7 +86,7 @@ public class Carousel implements Renderable {
             gl.glDisable(GL.GL_CULL_FACE);
             gl.glEnable(gl.GL_DEPTH_TEST);
             gl.glDepthFunc(GL.GL_LEQUAL);
-            Material carrouselMaterial = new Material(new Vector3f(0.5f,0.5f,0.5f),new Vector3f(0.0f,0.0f,0.0f),new Vector3f(0.25f,0.25f,0.25f),80f);
+            Material carrouselMaterial = new Material(new Vector3f(0.5f,0.5f,0.5f),new Vector3f(0.8f,0.8f,0.8f),new Vector3f(0.25f,0.25f,0.25f),80f);
             carrouselMaterial.use(gl);
             ShaderPrograms.useCarrouselShader(gl);
 
