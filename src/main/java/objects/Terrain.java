@@ -25,7 +25,7 @@ public class Terrain implements Renderable {
     public void render(GL2 gl, GLUT glut, double tAnim, double dt) {
         if (SHOWTERRAIN.getValue()) {
             gl.glEnable ( gl.GL_COLOR_MATERIAL ) ;
-            Material terrainMaterial = new Material(new Vector3f(0.2f,0.2f,0.2f),new Vector3f(0.8f,0.8f,0.8f),new Vector3f(0,0,0),32f);
+            Material terrainMaterial = new Material(new Vector3f(0.5f,0.5f,0.5f),new Vector3f(0.8f,0.8f,0.8f),new Vector3f(0.25f,0.25f,0.25f),80f);
             terrainMaterial.use(gl);
             ShaderPrograms.useTerrainShader(gl);
             //gl.glClearDepth(1.0f);

@@ -223,10 +223,12 @@ public class Carousel implements Renderable {
                     gl.glColor3f(1,0,0);
                 gl.glRotated(rotation,0,0,1);
                 gl.glBegin(gl.GL_TRIANGLES);
+                gl.glNormal3f(0,0,1);
                 gl.glVertex3f(0f, 0f, 3.01f); // Top Right Of The Quad (Top)
                 gl.glVertex3f(4.8f, 0f, 3.01f);
                 gl.glVertex3f(3.39f, 3.39f, 3.01f); // Top Right Of The Quad (Top)
                 gl.glEnd();// Start Drawing The Cube
+                gl.glNormal3f(0.2960f,0.1231f,0.9472f);
                 gl.glBegin(gl.GL_TRIANGLES);
                 gl.glVertex3f(0f, 0f, 4.51f); // Top Right Of The Quad (Top)
                 gl.glVertex3f(4.8f, 0f, 3.01f);

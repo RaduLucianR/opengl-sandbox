@@ -35,6 +35,7 @@ public class Road implements Renderable {
         texture.bind(gl);
         gl.glEnable(gl.GL_TEXTURE_2D);
         /** Define the control points and the number of Bezier curves of the path*/
+        gl.glNormal3f(0f,0f,1f);
         Vector3f[] curve1 = {
                 new Vector3f(-5,-15,0.0001f),
                 new Vector3f(-25,-15,0.0001f),
@@ -61,7 +62,7 @@ public class Road implements Renderable {
             gl.glEnable(GL.GL_CULL_FACE);
             gl.glEnable(gl.GL_DEPTH_TEST);
             gl.glDepthFunc(GL.GL_LEQUAL);
-            Material roadMaterial = new Material(new Vector3f(0.5f,0.5f,0.5f),new Vector3f(0.0f,0.0f,0.0f),new Vector3f(0.25f,0.25f,0.25f),80f);
+            Material roadMaterial = new Material(new Vector3f(0.5f,0.5f,0.5f),new Vector3f(0.8f,0.8f,0.8f),new Vector3f(0.25f,0.25f,0.25f),80f);
             roadMaterial.use(gl);
             ShaderPrograms.useRoadShader(gl);
             gl.glColor3f(0.5f,0.3f,0.1f);
