@@ -24,6 +24,7 @@ public class Road implements Renderable {
 
     private static List<Vector3f> p0List = new ArrayList<>();
     private static List<Vector3f> p1List = new ArrayList<>();
+    public List<Vector3f[]> curves  = new ArrayList<>();
 
     public Road(Vector3f position) {
         this.position = position;
@@ -57,6 +58,10 @@ public class Road implements Renderable {
                 new Vector3f(-5,-15,0.0001f)
         };
 
+        curves.add(curve1);
+        curves.add(curve2);
+        curves.add(curve3);
+
         if (SHOWPATH.getValue()) {
             gl.glEnable ( gl.GL_COLOR_MATERIAL ) ;
             gl.glEnable(GL.GL_CULL_FACE);
@@ -65,10 +70,12 @@ public class Road implements Renderable {
             Material roadMaterial = new Material(new Vector3f(0.5f,0.5f,0.5f),new Vector3f(0.8f,0.8f,0.8f),new Vector3f(0.25f,0.25f,0.25f),80f);
             roadMaterial.use(gl);
             ShaderPrograms.useRoadShader(gl);
+
             gl.glColor3f(0.5f,0.3f,0.1f);
             drawBezierCurve(gl,curve1,curve3);
             drawBezierCurve(gl,curve2,curve1);
             drawBezierCurve(gl,curve3,curve2);
+
         }
 
         if (SHOWCONTROLPOLYGONS.getValue()) {
@@ -79,8 +86,19 @@ public class Road implements Renderable {
     }
 
    /** computes point at parameter t on Bezier spline. */
-    public Vector3f getCubicBezierSplinePnt(double t) {
-        return null;
+    public Vector3f getCubicBezierSplinePnt(List<Vector3f[]> curves, double t) {
+        float lowEnd = 0.45f;
+        float highEnd = 0.75f;
+        if (t >= 0 && t <= lowEnd) {
+            float y = (float) ((t - 0.0f)/(lowEnd - 0.0f));
+            return getCubicBezierPnt(curves.get(0),y);
+        } else if (t > lowEnd && t <= highEnd){
+            float y = (float) ((t - lowEnd)/(highEnd - lowEnd));
+            return getCubicBezierPnt(curves.get(1),y);
+        } else {
+            float y = (float) ((t - highEnd)/(1f - highEnd));
+            return getCubicBezierPnt(curves.get(2),y);
+        }
     }
 
    /** computes tangent at parameter t on Bezier spline. */
