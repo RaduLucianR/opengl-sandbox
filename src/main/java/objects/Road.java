@@ -11,6 +11,8 @@ import static java.util.Arrays.asList;
 import java.nio.FloatBuffer;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.joml.Vector2f;
 import org.joml.Vector3f;
 import static sandbox.Sandbox.CheckBoxID.SHOWCONTROLPOLYGONS;
 import static sandbox.Sandbox.CheckBoxID.SHOWPATH;
@@ -33,8 +35,6 @@ public class Road implements Renderable {
 
     @Override
     public void render(GL2 gl, GLUT glut, double tAnim, double dt) {
-        texture.bind(gl);
-        gl.glEnable(gl.GL_TEXTURE_2D);
         /** Define the control points and the number of Bezier curves of the path*/
         gl.glNormal3f(0f,0f,1f);
         Vector3f[] curve1 = {
@@ -68,13 +68,16 @@ public class Road implements Renderable {
             gl.glEnable(gl.GL_DEPTH_TEST);
             gl.glDepthFunc(GL.GL_LEQUAL);
             Material roadMaterial = new Material(new Vector3f(0.5f,0.5f,0.5f),new Vector3f(0.8f,0.8f,0.8f),new Vector3f(0.25f,0.25f,0.25f),80f);
-            roadMaterial.use(gl);
             ShaderPrograms.useRoadShader(gl);
+            texture.bind(gl);
+            roadMaterial.use(gl);
 
             gl.glColor3f(0.5f,0.3f,0.1f);
+            gl.glPushMatrix();
             drawBezierCurve(gl,curve1,curve3);
             drawBezierCurve(gl,curve2,curve1);
             drawBezierCurve(gl,curve3,curve2);
+            gl.glPopMatrix();
 
         }
 
@@ -178,7 +181,10 @@ public class Road implements Renderable {
        pointPrev.add(dv,p2);
        pointPrev.sub(dv,p3);
 
+       gl.glTexCoord2f(0, 0);
        gl.glVertex3f(p2.x,p2.y,0.001f);
+
+       gl.glTexCoord2f(0, 1);
        gl.glVertex3f(p3.x,p3.y,0.001f);
 
        for (int j = 1; j < i; j++) {
@@ -199,11 +205,24 @@ public class Road implements Renderable {
            p0List.add(p0);
            p1List.add(p1);
 
-           double tex = (j % 2)*0.5;
-           gl.glTexCoord2d(tex, (j+t)*20);
+           Vector2f texcoord1 = new Vector2f(0);
+           Vector2f texcoord2 = new Vector2f(0);
+           if (j % 2 == 0) {
+               texcoord1.x = 0;
+               texcoord1.y = 0;
+               texcoord2.x = 0;
+               texcoord2.y = 1;
+           } else {
+               texcoord1.x = 1;
+               texcoord1.y = 1;
+               texcoord2.x = 1;
+               texcoord2.y = 0;
+           }
+
+           gl.glTexCoord2f(texcoord1.x,texcoord1.y);
            gl.glVertex3f(p0.x,p0.y,0.001f);
 
-           gl.glTexCoord2d(tex, j*20);
+           gl.glTexCoord2f(texcoord2.x, texcoord2.y);
            gl.glVertex3f(p1.x,p1.y,0.001f);
        }
        gl.glEnd();

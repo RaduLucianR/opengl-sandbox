@@ -6,13 +6,16 @@ import nl.tue.s2iv60.core.cg.Camera;
 import nl.tue.s2iv60.core.app.GS;
 import org.joml.Vector3f;
 
+import static objects.Stall.*;
+
 import java.util.Collections;
 import java.util.Set;
 
 class FirstPersonCamera extends Camera {
-    public FirstPersonCamera() {
-        this.eye = new Vector3f(0,0, 1.8f);       // eys at 1.8 meter
-        this.center = new Vector3f(0, 10, 1.8f);
+    public FirstPersonCamera(Vector3f pos) {
+        this.eye = new Vector3f(10,7, 1.8f);       // eyes at 1.8 meter
+        //this.center = new Vector3f(0, 10, 1.8f);
+        this.center = pos;
         this.up = new Vector3f(0, 0, 1);
     }
     
@@ -21,7 +24,7 @@ class FirstPersonCamera extends Camera {
         String key = GS.keysPressed.toString();
         char[] keyArray = key.toCharArray();
         for (int i = 0; i < keyArray.length; i++) {
-            float angle = 1f;
+            float angle = 0.9f;
             Vector3f direction = new Vector3f(0);
             Vector3f centerCopy = center;
             Vector3f eyeCopy = eye;
@@ -60,10 +63,18 @@ class FirstPersonCamera extends Camera {
                 center.sub(direction);
             }
             if (keyArray[i] == 'a') {
-
+                direction.cross(up);
+                direction.normalize();
+                direction.mul(0.2f);
+                eye.sub(direction);
+                center.sub(direction);
             }
             if (keyArray[i] == 'd') {
-
+                direction.cross(up);
+                direction.normalize();
+                direction.mul(0.2f);
+                eye.add(direction);
+                center.add(direction);
             }
         }
         super.apply(gl, glu);
