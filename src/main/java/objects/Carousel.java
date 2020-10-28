@@ -19,17 +19,20 @@ public class Carousel implements Renderable {
 
     private float rotation;  //for angle of rotation
     private float value;
-    private float height;
-    private boolean state;
+    private float heightDown;
+    private float heightUp;
+    private boolean stateDown;
+    private boolean stateUp;
+    private double animation;
 
     public Carousel(Vector3f position, float size) {
         this.position = position;
         this.size = size;
     }
 
-    public void drawChair(GL2 gl, GLUT glut){
+    public void drawChairDown(GL2 gl, GLUT glut){
         gl.glPushMatrix();
-        gl.glTranslatef(0,0,height);
+        gl.glTranslatef(0,0,heightDown);
         gl.glPushMatrix();
         gl.glTranslatef(0,0,0.3f);
         gl.glScalef(0.3f,0.2f,0.05f);
@@ -61,21 +64,74 @@ public class Carousel implements Renderable {
         gl.glScalef(0.05f,0.15f,0.05f);
         glut.glutSolidCube(2);
         gl.glPopMatrix();
+        if (stateDown)
+        {
+
+            heightDown += 0.001;
+            if(heightDown > 1.1f) { stateDown = false; }
+
+        }
+        else if (!stateDown)
+        {
+
+            heightDown -= 0.001;
+            if(heightDown < 0.15f) { stateDown = true; }
+
+        }
         gl.glPopMatrix();
-        if (state == true)
+
+    }
+
+    public void drawChairUp(GL2 gl, GLUT glut){
+        gl.glPushMatrix();
+        gl.glTranslatef(0,0,1.1f);
+        gl.glTranslatef(0,0,heightUp);
+        gl.glPushMatrix();
+        gl.glTranslatef(0,0,0.3f);
+        gl.glScalef(0.3f,0.2f,0.05f);
+        glut.glutSolidCube(2);
+        gl.glPopMatrix();
+
+        gl.glPushMatrix();
+        gl.glTranslatef(0,0,0.6f);
+        gl.glScalef(0.25f,0.1f,0.05f);
+        glut.glutSolidCube(2);
+        gl.glPopMatrix();
+
+        gl.glPushMatrix();
+        gl.glTranslatef(0.0f,-0.15f,0.7f);
+        gl.glScalef(0.3f,0.05f,0.4f);
+        glut.glutSolidCube(2);
+        gl.glPopMatrix();
+
+        gl.glPushMatrix();
+        gl.glColor3f(1,1,1);
+        gl.glTranslatef(0.25f,0f,0.8f);
+        gl.glScalef(0.05f,0.15f,0.05f);
+        glut.glutSolidCube(2);
+        gl.glPopMatrix();
+
+        gl.glPushMatrix();
+        gl.glColor3f(1,1,1);
+        gl.glTranslatef(-0.25f,0f,0.8f);
+        gl.glScalef(0.05f,0.15f,0.05f);
+        glut.glutSolidCube(2);
+        gl.glPopMatrix();
+        if (stateUp)
         {
 
-            height += 0.001;
-            if(height > 1.1f) { state = false; }
+            heightUp += 0.001;
+            if(heightUp > 0.0f) { stateUp = false; }
 
         }
-        else if (state == false)
+        else if (!stateUp)
         {
 
-            height -= 0.001;
-            if(height < 0.15f) { state = true; }
+            heightUp -= 0.001;
+            if(heightUp < -0.95f) { stateUp = true; }
 
         }
+        gl.glPopMatrix();
 
     }
 
@@ -233,19 +289,40 @@ public class Carousel implements Renderable {
 
             for (int i = 0;i<=3;i++) {
                 float rotation = (float) (90.0);
+                    //if (i%2==0){
+                    //    height=0.15f;
+                    //}
+                    //else{
+                    //    height=1.1f;
+                    //}
                     gl.glRotated(rotation, 0, 0, 1);
                     gl.glPushMatrix();
                     gl.glTranslatef(1.5f, 0.2f, 0.5f);
                     gl.glColor3f(0.9f, 0.5f, 0.3f);
-                    drawChair(gl, glut);
+                    if (i%2==0){
+                        drawChairDown(gl,glut);
+                    }
+                    else{
+                        drawChairUp(gl,glut);
+                    }
 
                     gl.glTranslatef(1.0f, 0, 0.f);
                     gl.glColor3f(0.9f, 0.5f, 0.3f);
-                    drawChair(gl, glut);
+                    if (i%2==0){
+                        drawChairDown(gl,glut);
+                    }
+                    else{
+                        drawChairUp(gl,glut);
+                    }
 
                     gl.glTranslatef(1.0f, 0, 0.0f);
                     gl.glColor3f(0.9f, 0.5f, 0.3f);
-                    drawChair(gl, glut);
+                    if (i%2==0){
+                        drawChairDown(gl,glut);
+                    }
+                    else{
+                        drawChairUp(gl,glut);
+                    }
 
                     gl.glPopMatrix();
 
