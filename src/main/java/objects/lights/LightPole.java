@@ -30,7 +30,8 @@ public class LightPole implements Renderable {
 
     public void drawLightPole(GL2 gl, GLUT glut){
         gl.glPushMatrix();
-        gl.glTranslatef(8,8,0);
+        gl.glTranslatef(POS.x,POS.y,POS.z);
+        gl.glScalef(SF,SF,SF);
 
         gl.glPushMatrix();
         gl.glColor3f(0.1f,0.1f,0.1f);

@@ -8,7 +8,6 @@ import nl.tue.s2iv60.core.util.Material;
 import org.joml.Vector3f;
 import shaders.ShaderPrograms;
 import static sandbox.Sandbox.SliderID.CAROUSEL_SPEED;
-
 import static sandbox.Sandbox.CheckBoxID.SHOWCAROUSEL;
 import static sandbox.Sandbox.CheckBoxID.SHOWTERRAIN;
 

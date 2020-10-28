@@ -12,9 +12,11 @@ import shaders.ShaderPrograms;
 
 public class Trees implements Renderable {
     private final Vector3f position;
+    private final float size;
 
-    public Trees(Vector3f position) {
+    public Trees(Vector3f position,float size) {
         this.position = position;
+        this.size = size;
     }
 
     @Override
@@ -30,7 +32,7 @@ public class Trees implements Renderable {
 
             gl.glPushMatrix();
             gl.glTranslatef(position.x,position.y,position.z);
-
+            gl.glScalef(size,size,size);
             gl.glPushMatrix();
             gl.glColor3f(0.3f,0,0);
             glut.glutSolidCylinder(0.75,5,20,20);

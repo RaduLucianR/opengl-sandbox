@@ -50,7 +50,7 @@ public class SandboxRenderer extends Renderer {
         objects.add(new Axis(pos,size));
         objects.add(new Terrain());
         objects.add(new Stall(pos));
-        objects.add(new LightPole(pos,0,0));
+        objects.add(new LightPole(new Vector3f(8,8,0),1,0));
         objects.add(new Train(pos));
 
         objects.add(new Road(pos));
@@ -62,27 +62,34 @@ public class SandboxRenderer extends Renderer {
         tree1.x = -10;
         tree1.y = -10;
         tree1.z = 0;
-        objects.add(new Trees(tree1));
+        objects.add(new Trees(tree1,size*1.2f));
         Vector3f tree2 = new Vector3f();
         tree2.x = 15;
         tree2.y = 15;
         tree2.z = 0;
-        objects.add(new Trees(tree2));
+        objects.add(new Trees(tree2,size));
         Vector3f tree3 = new Vector3f();
         tree3.x = -7.5f;
         tree3.y = 7.5f;
         tree3.z = 0;
-        objects.add(new Trees(tree3));
+        objects.add(new Trees(tree3,size*1.3f));
         Vector3f tree4 = new Vector3f();
         tree4.x = -12;
         tree4.y = 19.5f;
         tree4.z = 0;
-        objects.add(new Trees(tree4));
+        objects.add(new Trees(tree4,size*1.15f));
         Vector3f tree5 = new Vector3f();
         tree5.x = 18;
         tree5.y = -13;
         tree5.z = 0;
-        objects.add(new Trees(tree5));
+        objects.add(new Trees(tree5,size));
+
+
+        objects.add(new TrainNoMovement(new Vector3f(9.1f,10,1),0.1f));
+        objects.add(new Carousel(new Vector3f(100,100,10),0.1f));
+        objects.add(new Trees(new Vector3f(10.7f,10.5f,1),0.1f));
+        objects.add(new LightPole(new Vector3f(9.1f,10.5f,1.0f),0.1f,1));
+
 
 
 
