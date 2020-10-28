@@ -11,8 +11,7 @@ import org.joml.Vector3f;
 import shaders.ShaderPrograms;
 
 import static sandbox.Sandbox.CheckBoxID.SHOWAXIS;
-import static sandbox.Sandbox.SliderID.SLIDER1;
-import static sandbox.Sandbox.SliderID.SLIDER2;
+
 
 public class Axis implements Renderable {
     private Vector3f pos;
@@ -67,7 +66,9 @@ public class Axis implements Renderable {
     public void render(GL2 gl, GLUT glut, double tAnim, double dt) {
         if (SHOWAXIS.getValue()) {
             ShaderPrograms.useDefaultShader(gl);
-
+            gl.glPushMatrix();
+            gl.glTranslatef(pos.x,pos.y,pos.z);
+            gl.glScalef(sf,sf,sf);
             gl.glPushMatrix();
             gl.glColor3f(1,1,0);
             glut.glutSolidSphere(0.2,20,20);
@@ -132,6 +133,7 @@ public class Axis implements Renderable {
             glut.glutSolidCylinder(0.05,0.8,20,20);
             gl.glPopMatrix();
              */
+            gl.glPopMatrix();
         }
     }
 }

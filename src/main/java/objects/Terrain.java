@@ -8,8 +8,7 @@ import nl.tue.s2iv60.core.util.ShaderProgram;
 import org.joml.Vector3f;
 import static sandbox.Sandbox.CheckBoxID.SHOWTERRAIN;
 import static sandbox.Sandbox.ComboBoxID.VIEWMODE;
-import static sandbox.Sandbox.SliderID.SLIDER1;
-import static sandbox.Sandbox.SliderID.SLIDER2;
+
 
 import shaders.ShaderPrograms;
 

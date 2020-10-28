@@ -4,8 +4,6 @@ import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.util.gl2.GLUT;
 import nl.tue.s2iv60.core.cg.Renderable;
 import static sandbox.Sandbox.ComboBoxID.VIEWMODE;
-import static sandbox.Sandbox.SliderID.SLIDER1;
-import static sandbox.Sandbox.SliderID.SLIDER2;
 import shaders.ShaderPrograms;
 
 /**
@@ -33,8 +31,6 @@ public class Cube implements Renderable {
 
             double anim = Math.sin(tAnim);
 
-            float slider1 = (float) SLIDER1.getValue() - 50;
-            float slider2 = (float) SLIDER2.getValue() - 50;
 
             double x = anim * 5;
             double y = anim * 5;

@@ -6,12 +6,12 @@ import com.jogamp.opengl.glu.GLU;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import static nl.tue.s2iv60.core.app.GS.FS;
-import static nl.tue.s2iv60.core.app.GS.SHADER_DIR;
+
+import static nl.tue.s2iv60.core.app.GS.*;
 import static sandbox.Sandbox.ComboBoxID.DAYNIGHT;
 import static sandbox.Sandbox.CheckBoxID.HEADLIGHTON;
 import nl.tue.s2iv60.core.util.ShaderProgram;
-
+import nl.tue.s2iv60.core.util.TextureImg;
 
 
 /**
@@ -103,6 +103,7 @@ public class ShaderPrograms {
         ShaderProgram t=roadShader;
         t.useProgram(gl);
         t.setUniform(gl,"isDay",DAYNIGHT.getValue()==0);
+        //t.setUniform(gl,"desiredTexture",0);
         return roadShader;
     }
 

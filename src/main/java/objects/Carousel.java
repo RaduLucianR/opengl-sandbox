@@ -7,12 +7,14 @@ import nl.tue.s2iv60.core.cg.Renderable;
 import nl.tue.s2iv60.core.util.Material;
 import org.joml.Vector3f;
 import shaders.ShaderPrograms;
+
+import static sandbox.Sandbox.SliderID.CAROUSEL_SIZE;
 import static sandbox.Sandbox.SliderID.CAROUSEL_SPEED;
 import static sandbox.Sandbox.CheckBoxID.SHOWCAROUSEL;
 import static sandbox.Sandbox.CheckBoxID.SHOWTERRAIN;
 
 public class Carousel implements Renderable {
-    private final float size;
+    private float size;
 
     private final Vector3f position;
 
@@ -271,7 +273,7 @@ public class Carousel implements Renderable {
                     gl.glColor3f(1,0,0);
                 gl.glRotated(rotation,0,0,1);
                 gl.glBegin(gl.GL_TRIANGLES);
-                gl.glNormal3f(0,0,1);
+                gl.glNormal3f(0,0,-1.0f);
                 gl.glVertex3f(0f, 0f, 3.01f); // Top Right Of The Quad (Top)
                 gl.glVertex3f(4.8f, 0f, 3.01f);
                 gl.glVertex3f(3.39f, 3.39f, 3.01f); // Top Right Of The Quad (Top)
@@ -330,6 +332,7 @@ public class Carousel implements Renderable {
             value = CAROUSEL_SPEED.getValue();
             value = (float) (value / 100.0);
             rotation += value;  //assigning the angle
+            size =(float) CAROUSEL_SIZE.getValue()/50;
 
         }
     }

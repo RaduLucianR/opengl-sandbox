@@ -3,6 +3,8 @@ varying vec3 N;
 varying vec3 v;
 uniform int isDay;
 uniform int headLightOn;
+uniform sampler2D tex;
+
 void main (void)
 {
         vec3 L = normalize(gl_LightSource[0].position.xyz - v);
@@ -21,11 +23,10 @@ void main (void)
         * pow(max(dot(R, E), 0.0), 0.6*gl_FrontMaterial.shininess);
         Ispec = clamp(Ispec, 0.0, 1.0);
         // write Total Color:
-        gl_FragColor =gl_Color * (Iamb + Idiff + Ispec);
         if (isDay == 1){
-            gl_FragColor=gl_FragColor*1.5;
+            gl_FragColor = (Iamb + Idiff + Ispec)*texture2D(tex,gl_TexCoord[0].st*0.1)*1.5;
         }
-        else{
-            gl_FragColor=gl_FragColor*0.5;
+        else {
+            gl_FragColor = (Iamb + Idiff + Ispec)*texture2D(tex,gl_TexCoord[0].st)*0.5;
         }
 }

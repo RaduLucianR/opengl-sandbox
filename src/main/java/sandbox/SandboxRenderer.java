@@ -8,6 +8,7 @@ import objects.lights.LightPole;
 import objects.lights.StreetLights;
 import org.joml.Vector3f;
 import static sandbox.Sandbox.ComboBoxID.VIEWMODE;
+import static sandbox.Sandbox.CheckBoxID.SHOWSTALL;
 import shaders.ShaderPrograms;
 
 /**
@@ -46,17 +47,17 @@ public class SandboxRenderer extends Renderer {
         pos.x = 0;
         pos.y = 0;
         pos.z = 0;
-        float size = 4;
-        objects.add(new Axis(pos,size));
+        float size = 4.0f;
+        objects.add(new Axis(pos,size/4));
         objects.add(new Terrain());
         objects.add(new Stall(pos));
-        objects.add(new LightPole(new Vector3f(8,8,0),1,0));
+        //objects.add(new LightPole(new Vector3f(8,8,0),1,100,1));
         objects.add(new Train(pos));
 
         objects.add(new Road(pos));
         size = 1;
         objects.add(new Carousel(pos,size));
-
+        objects.add(new StreetLights(new Road(pos)));
 
         Vector3f tree1 = new Vector3f();
         tree1.x = -10;
@@ -83,14 +84,11 @@ public class SandboxRenderer extends Renderer {
         tree5.y = -13;
         tree5.z = 0;
         objects.add(new Trees(tree5,size));
-
-
-        objects.add(new TrainNoMovement(new Vector3f(9.1f,10,1),0.1f));
-        objects.add(new Carousel(new Vector3f(100,100,10),0.1f));
-        objects.add(new Trees(new Vector3f(10.7f,10.5f,1),0.1f));
-        objects.add(new LightPole(new Vector3f(9.1f,10.5f,1.0f),0.1f,1));
-
-
+            objects.add(new Axis(new Vector3f(10.7f,9.5f,1.1f),0.5f));
+            objects.add(new TrainNoMovement(new Vector3f(9.1f, 10, 1), 0.1f));
+            objects.add(new CarouselStatic(new Vector3f(100, 100, 10), 0.1f));
+            objects.add(new Trees(new Vector3f(10.7f, 10.5f, 1), 0.1f));
+            objects.add(new LightPole(new Vector3f(9.1f, 10.5f, 1.0f), 0.1f, 1,1));
 
 
     }
@@ -122,6 +120,7 @@ public class SandboxRenderer extends Renderer {
             }
             currentViewMode = VIEWMODE.getValue();
         }
+
         
         // pass camera parameters to opengl,
         // render all objects in the objects array, ...

@@ -74,6 +74,8 @@ public class Road implements Renderable {
 
             gl.glColor3f(0.5f,0.3f,0.1f);
             gl.glPushMatrix();
+            gl.glTexParameteri(GL2.GL_TEXTURE_2D,GL2.GL_TEXTURE_WRAP_S,GL2.GL_REPEAT);
+            gl.glTexParameteri(GL2.GL_TEXTURE_2D,GL2.GL_TEXTURE_WRAP_T,GL2.GL_REPEAT);
             drawBezierCurve(gl,curve1,curve3);
             drawBezierCurve(gl,curve2,curve1);
             drawBezierCurve(gl,curve3,curve2);
@@ -82,6 +84,7 @@ public class Road implements Renderable {
         }
 
         if (SHOWCONTROLPOLYGONS.getValue()) {
+            ShaderPrograms.usePhongShader(gl);
             drawControlGraph(gl,glut,curve1,true);
             drawControlGraph(gl,glut,curve2,false);
             drawControlGraph(gl,glut,curve3,false);
@@ -105,8 +108,19 @@ public class Road implements Renderable {
     }
 
    /** computes tangent at parameter t on Bezier spline. */
-    public Vector3f getCubicBezierSplineTng(double t) {
-        return null;
+    public Vector3f[] getCubicBezierSplineTng(List<Vector3f[]> curves, double t) {
+        float lowEnd = 0.45f;
+        float highEnd = 0.75f;
+        if (t >= 0 && t <= lowEnd) {
+            float y = (float) ((t - 0.0f)/(lowEnd - 0.0f));
+            return getCubicBezierTng(curves.get(0),y);
+        } else if (t > lowEnd && t <= highEnd){
+            float y = (float) ((t - lowEnd)/(highEnd - lowEnd));
+            return getCubicBezierTng(curves.get(1),y);
+        } else {
+            float y = (float) ((t - highEnd)/(1f - highEnd));
+            return getCubicBezierTng(curves.get(2),y);
+        }
     }
 
    /** computes point at parameter t on cubic Bezier with given control points P. */
@@ -125,8 +139,32 @@ public class Road implements Renderable {
     }
 
    /** computes tangent at parameter t on cubic Bezier with given control points P. */
-   private static Vector3f getCubicBezierTng(final Vector3f[] P, double t) {
-        return null;
+   private static Vector3f[] getCubicBezierTng(final Vector3f[] P, double t) {
+       Vector3f A = P[0];
+       Vector3f B = P[1];
+       Vector3f C = P[2];
+       Vector3f D = P[3];
+       double s = 1 - t;
+       double ABx = A.x*s + B.x*t;
+       double BCx = B.x*s + C.x*t;
+       double CDx = C.x*s + D.x*t;
+       double ABCx = ABx*s + BCx*t;
+       double BCDx = BCx*s + CDx*t;
+
+       double ABy = A.y*s + B.y*t;
+       double BCy = B.y*s + C.y*t;
+       double CDy = C.y*s + D.y*t;
+       double ABCy = ABy*s + BCy*t;
+       double BCDy = BCy*s + CDy*t;
+
+       Vector3f[] points = new Vector3f[2];
+       points[0] = new Vector3f();
+       points[1] = new Vector3f();
+       points[0].x = (float) ABCx;
+       points[0].y = (float) ABCy;
+       points[1].x = (float) BCDx;
+       points[1].y = (float) BCDy;
+       return points;
    }
 
    /**Computes one coordinate of a point on a Bezier curve with given coordinate of control points*/
