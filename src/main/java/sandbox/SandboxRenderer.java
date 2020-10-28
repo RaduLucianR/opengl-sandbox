@@ -109,7 +109,7 @@ public class SandboxRenderer extends Renderer {
                     Vector3f cnt = reset? null: camera.getCenter();
                     Vector3f up  = reset? null: camera.getUp();
                     camera = new FlyingCamera(eye,cnt,up); break;
-                case 2: camera = new FirstPersonCamera(); break;
+                case 2: camera = new FirstPersonCamera(new Vector3f(10,8,1.8f)); break;
                 default:
                     System.err.println(VIEWMODE.getValue());
             }
