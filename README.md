@@ -9,7 +9,7 @@ The control points of the Bezier curve highlighted:
 ![](screenshots/cpcarousel.png) 
 
 First person camera:
-![](screenshots/cpcarousel.png) 
+![](screenshots/firstperson.png) 
 
 ## Features
 The scene includes:
