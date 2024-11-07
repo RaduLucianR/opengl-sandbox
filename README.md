@@ -25,4 +25,5 @@ The scene includes:
 
 ## How to run
 1. Install Java (if not already installed); at least JDK 11 is required.
-2. Compile and then run the `Sandbox` file from the `sandbox` package.
+2. Clone the repository
+3. Compile and then run the `Sandbox` file from the `sandbox` package.
