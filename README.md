@@ -3,13 +3,13 @@ Amusement park scene created from scratch with JOGL, the Java binding of OpenGL.
 
 ## Demo
 Overview of the created scene, including: carousel, train, path, trees, light poles, stall:
-![alt text](allview.png)
+![](screenshots/allview.png)
 
 The control points of the Bezier curve highlighted:
-![alt text](cpcarousel.png) 
+![](screenshots/cpcarousel.png) 
 
 First person camera:
-![alt text](cpcarousel.png) 
+![](screenshots/cpcarousel.png) 
 
 ## Features
 The scene includes:
