@@ -11,6 +11,11 @@ import org.joml.Vector3f;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 2IV60 - Computer Graphics
+ * Date: 28/10/2020
+ * @author Teodor Lungu and Radu Lucian Radulescu (1416332 & 1438808)
+ */
 public class StreetLights implements Renderable {
     private final int numLights = 5;
     private final Road road;

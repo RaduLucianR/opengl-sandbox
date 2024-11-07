@@ -12,7 +12,11 @@ import shaders.ShaderPrograms;
 
 import static sandbox.Sandbox.CheckBoxID.SHOWAXIS;
 
-
+/**
+ * 2IV60 - Computer Graphics
+ * Date: 28/10/2020
+ * @author Teodor Lungu and Radu Lucian Radulescu (1416332 & 1438808)
+ */
 public class Axis implements Renderable {
     private Vector3f pos;
     private float sf;

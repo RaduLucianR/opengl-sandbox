@@ -5,7 +5,11 @@ import com.jogamp.opengl.util.gl2.GLUT;
 import nl.tue.s2iv60.core.cg.Renderable;
 import static sandbox.Sandbox.ComboBoxID.VIEWMODE;
 import shaders.ShaderPrograms;
-
+/**
+ * 2IV60 - Computer Graphics
+ * Date: 28/10/2020
+ * @author Teodor Lungu and Radu Lucian Radulescu (1416332 & 1438808)
+ */
 /**
  * Example object
  *

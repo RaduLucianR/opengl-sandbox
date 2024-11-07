@@ -8,8 +8,8 @@ import nl.tue.s2iv60.core.app.Base;
 
 /**
  * 2IV60 - Computer Graphics
- * Date: 01/09/2020
- * @author kafoe
+ * Date: 28/10/2020
+ * @author Teodor Lungu and Radu Lucian Radulescu (1416332 & 1438808)
  */
 public class Sandbox extends Base {
     /** add an enum item here to get an additional slider. 

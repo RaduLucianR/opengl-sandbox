@@ -11,7 +11,11 @@ import static sandbox.Sandbox.CheckBoxID.SHOWSTALL;
 import shaders.ShaderPrograms;
 import nl.tue.s2iv60.core.cg.Renderer;
 import objects.*;
-
+/**
+ * 2IV60 - Computer Graphics
+ * Date: 28/10/2020
+ * @author Teodor Lungu and Radu Lucian Radulescu (1416332 & 1438808)
+ */
 public class Stall implements Renderable {
     private final Vector3f position;
 

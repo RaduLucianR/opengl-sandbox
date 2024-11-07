@@ -18,7 +18,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static sandbox.Sandbox.CheckBoxID.*;
-
+/**
+ * 2IV60 - Computer Graphics
+ * Date: 28/10/2020
+ * @author Teodor Lungu and Radu Lucian Radulescu (1416332 & 1438808)
+ */
 public class Train implements Renderable {
     private final Vector3f position;
 
@@ -246,14 +250,14 @@ public class Train implements Renderable {
 
             gl.glPushMatrix();
             gl.glTranslatef(point.x, point.y, point.z);
-            gl.glColor3f(1,0,0);
+            gl.glColor3f(0.5f,0.5f,0.5f);
             gl.glTranslatef(1.25f,0,2f);
             glut.glutSolidCylinder(0.35,1.25f,20,20);
             gl.glPopMatrix();
 
             gl.glPushMatrix();
             gl.glTranslatef(point.x, point.y, point.z);
-            gl.glColor3f(0,1,0);
+            gl.glColor3f(1,1,1);
             gl.glTranslatef(1.25f,0,3.25f);
             glut.glutSolidCone(0.45,0.5,20,20);
             gl.glPopMatrix();

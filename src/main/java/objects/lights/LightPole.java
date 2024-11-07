@@ -12,6 +12,12 @@ import static sandbox.Sandbox.CheckBoxID.SHOWLIGHTPOLES;
 import static sandbox.Sandbox.ComboBoxID.DAYNIGHT;
 import shaders.ShaderPrograms;
 
+/**
+ * 2IV60 - Computer Graphics
+ * Date: 28/10/2020
+ * @author Teodor Lungu and Radu Lucian Radulescu (1416332 & 1438808)
+ */
+
 public class LightPole implements Renderable {
     private final Vector3f POS, FACING;
     private final float SF;
@@ -42,7 +48,7 @@ public class LightPole implements Renderable {
         gl.glPushMatrix();
         gl.glColor3f(0.1f,0.1f,0.1f);
         gl.glTranslatef(0,0,0.1f);
-        gl.glScalef(5f,5f,1f);
+        gl.glScalef(5.0f,5.0f,1.0f);
         glut.glutSolidCube(0.2f);
         gl.glPopMatrix();
 
@@ -80,13 +86,7 @@ public class LightPole implements Renderable {
         if (SHOWLIGHTPOLES.getValue()) {
             gl.glEnable ( gl.GL_COLOR_MATERIAL ) ;
             gl.glEnable(GL.GL_CULL_FACE);
-
-            gl.glEnable(gl.GL_LIGHTING);
-            gl.glEnable(gl.GL_LIGHT0);
-            float[] lightpos = {2f,10f,10f,2f};
-            gl.glLightfv(gl.GL_LIGHT0,gl.GL_SPOT_DIRECTION,lightpos,0);
-
-            Material lightPoleMaterial = new Material(new Vector3f(0.5f,0.5f,0.5f),new Vector3f(0.0f,0.0f,0.0f),new Vector3f(0.25f,0.25f,0.25f),80f);
+            Material lightPoleMaterial = new Material(new Vector3f(0.5f,0.5f,0.5f),new Vector3f(0.8f,0.8f,0.8f),new Vector3f(0.25f,0.25f,0.25f),80f);
             lightPoleMaterial.use(gl);
             ShaderPrograms.usePhongShader(gl);
             drawLightPole(gl,glut);

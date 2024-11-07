@@ -19,6 +19,11 @@ import static sandbox.Sandbox.CheckBoxID.SHOWPATH;
 import shaders.ShaderPrograms;
 import com.jogamp.opengl.GLAutoDrawable;
 import com.jogamp.graph.curve.opengl.GLRegion;
+/**
+ * 2IV60 - Computer Graphics
+ * Date: 28/10/2020
+ * @author Teodor Lungu and Radu Lucian Radulescu (1416332 & 1438808)
+ */
 public class Road implements Renderable {
 
     private final Vector3f position;

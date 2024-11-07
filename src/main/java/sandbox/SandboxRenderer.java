@@ -19,6 +19,11 @@ import shaders.ShaderPrograms;
  * The Renderer class holds the camera which is initialized before any objects are created.
  *
  */
+/**
+ * 2IV60 - Computer Graphics
+ * Date: 28/10/2020
+ * @author Teodor Lungu and Radu Lucian Radulescu (1416332 & 1438808)
+ */
 public class SandboxRenderer extends Renderer {
     private int currentViewMode = -1; // no known view mode
     

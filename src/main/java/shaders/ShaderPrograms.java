@@ -13,7 +13,11 @@ import static sandbox.Sandbox.CheckBoxID.HEADLIGHTON;
 import nl.tue.s2iv60.core.util.ShaderProgram;
 import nl.tue.s2iv60.core.util.TextureImg;
 
-
+/**
+ * 2IV60 - Computer Graphics
+ * Date: 28/10/2020
+ * @author Teodor Lungu and Radu Lucian Radulescu (1416332 & 1438808)
+ */
 /**
  * Here you can add Shaders to the project.
  *

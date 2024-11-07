@@ -9,7 +9,11 @@ import objects.lights.LightPole;
 import org.joml.Vector3f;
 import static sandbox.Sandbox.CheckBoxID.SHOWTREES;
 import shaders.ShaderPrograms;
-
+/**
+ * 2IV60 - Computer Graphics
+ * Date: 28/10/2020
+ * @author Teodor Lungu and Radu Lucian Radulescu (1416332 & 1438808)
+ */
 public class Trees implements Renderable {
     private final Vector3f position;
     private final float size;

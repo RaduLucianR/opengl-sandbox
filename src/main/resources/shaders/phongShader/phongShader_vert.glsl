@@ -1,4 +1,4 @@
-
+//Authors: Teodor Lungu and Radu Lucian Radulescu (1416332 & 1438808)
 varying vec3 N;
 varying vec3 v;
 void main(void)

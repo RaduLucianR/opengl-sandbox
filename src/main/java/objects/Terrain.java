@@ -11,7 +11,11 @@ import static sandbox.Sandbox.ComboBoxID.VIEWMODE;
 
 
 import shaders.ShaderPrograms;
-
+/**
+ * 2IV60 - Computer Graphics
+ * Date: 28/10/2020
+ * @author Teodor Lungu and Radu Lucian Radulescu (1416332 & 1438808)
+ */
 public class Terrain implements Renderable {
     private final double sizeX=50;  // meter
     private final double sizeY=50;    // meter

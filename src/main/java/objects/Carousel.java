@@ -12,7 +12,11 @@ import static sandbox.Sandbox.SliderID.CAROUSEL_SIZE;
 import static sandbox.Sandbox.SliderID.CAROUSEL_SPEED;
 import static sandbox.Sandbox.CheckBoxID.SHOWCAROUSEL;
 import static sandbox.Sandbox.CheckBoxID.SHOWTERRAIN;
-
+/**
+ * 2IV60 - Computer Graphics
+ * Date: 28/10/2020
+ * @author Teodor Lungu and Radu Lucian Radulescu (1416332 & 1438808)
+ */
 public class Carousel implements Renderable {
     private float size;
 

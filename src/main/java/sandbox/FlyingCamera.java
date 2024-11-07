@@ -8,7 +8,11 @@ import org.joml.Matrix3d;
 import org.joml.Vector3f;
 
 import static java.lang.Math.*;
-
+/**
+ * 2IV60 - Computer Graphics
+ * Date: 28/10/2020
+ * @author Teodor Lungu and Radu Lucian Radulescu (1416332 & 1438808)
+ */
 class FlyingCamera extends Camera {
     /**
      * Set camera at given eye point, looking at given center, and taking the up

@@ -10,7 +10,11 @@ import static objects.Stall.*;
 
 import java.util.Collections;
 import java.util.Set;
-
+/**
+ * 2IV60 - Computer Graphics
+ * Date: 28/10/2020
+ * @author Teodor Lungu and Radu Lucian Radulescu (1416332 & 1438808)
+ */
 class FirstPersonCamera extends Camera {
     public FirstPersonCamera(Vector3f pos) {
         this.eye = new Vector3f(10,7, 1.8f);       // eyes at 1.8 meter
